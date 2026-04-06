@@ -1,0 +1,817 @@
+{
+  "task_name": "full_pipeline",
+  "max_steps": 15,
+  "expected_dtypes": {
+    "age": "int",
+    "salary": "int",
+    "city": "str",
+    "department": "str",
+    "years_exp": "int",
+    "rating": "float"
+  },
+  "required_features": [
+    "age_group"
+  ],
+  "dataset": [
+    {
+      "age": 24,
+      "salary": "42000",
+      "city": "mumbai",
+      "department": "engineering",
+      "years_exp": 2,
+      "rating": "3.6"
+    },
+    {
+      "age": 27,
+      "salary": "43600",
+      "city": "Delhi",
+      "department": "ENGINEERING",
+      "years_exp": 4,
+      "rating": "3.9"
+    },
+    {
+      "age": 30,
+      "salary": "not_available",
+      "city": "Bangalore",
+      "department": "Sales",
+      "years_exp": 6,
+      "rating": "4.2"
+    },
+    {
+      "age": null,
+      "salary": "46800",
+      "city": "pune",
+      "department": "sales",
+      "years_exp": 8,
+      "rating": "4.5"
+    },
+    {
+      "age": 36,
+      "salary": "47400",
+      "city": "Chennai",
+      "department": "MARKETING",
+      "years_exp": 10,
+      "rating": "3.6"
+    },
+    {
+      "age": 39,
+      "salary": "49000",
+      "city": "Hyderabad",
+      "department": "Marketing",
+      "years_exp": null,
+      "rating": "3.9"
+    },
+    {
+      "age": 42,
+      "salary": "50600",
+      "city": "Mumbai",
+      "department": "finance",
+      "years_exp": 14,
+      "rating": "4.2"
+    },
+    {
+      "age": 24,
+      "salary": "52200",
+      "city": "delhi",
+      "department": "FINANCE",
+      "years_exp": 16,
+      "rating": null
+    },
+    {
+      "age": 27,
+      "salary": "52800",
+      "city": "BANGALORE",
+      "department": "Support",
+      "years_exp": 18,
+      "rating": "3.6"
+    },
+    {
+      "age": 30,
+      "salary": "54400",
+      "city": "Pune",
+      "department": "support",
+      "years_exp": 3,
+      "rating": "3.9"
+    },
+    {
+      "age": 33,
+      "salary": "56000",
+      "city": "chennai",
+      "department": "OPERATIONS",
+      "years_exp": 5,
+      "rating": "4.2"
+    },
+    {
+      "age": null,
+      "salary": "57600",
+      "city": "HYDERABAD",
+      "department": "Operations",
+      "years_exp": 7,
+      "rating": "4.5"
+    },
+    {
+      "age": 39,
+      "salary": "58200",
+      "city": "Mumbai",
+      "department": "engineering",
+      "years_exp": 9,
+      "rating": "3.6"
+    },
+    {
+      "age": 42,
+      "salary": "59800",
+      "city": "delhi",
+      "department": "ENGINEERING",
+      "years_exp": 11,
+      "rating": "3.9"
+    },
+    {
+      "age": 24,
+      "salary": "61400",
+      "city": "BANGALORE",
+      "department": "Sales",
+      "years_exp": null,
+      "rating": "4.2"
+    },
+    {
+      "age": 27,
+      "salary": "63000",
+      "city": "Pune",
+      "department": "sales",
+      "years_exp": 15,
+      "rating": "4.5"
+    },
+    {
+      "age": 30,
+      "salary": "not_available",
+      "city": "chennai",
+      "department": "MARKETING",
+      "years_exp": 17,
+      "rating": "3.6"
+    },
+    {
+      "age": 33,
+      "salary": "65200",
+      "city": "HYDERABAD",
+      "department": "Marketing",
+      "years_exp": 2,
+      "rating": "3.9"
+    },
+    {
+      "age": 36,
+      "salary": "66800",
+      "city": "Mumbai",
+      "department": "finance",
+      "years_exp": 4,
+      "rating": null
+    },
+    {
+      "age": null,
+      "salary": "68400",
+      "city": "delhi",
+      "department": "FINANCE",
+      "years_exp": 6,
+      "rating": "4.5"
+    },
+    {
+      "age": 42,
+      "salary": "69000",
+      "city": "BANGALORE",
+      "department": "Support",
+      "years_exp": 8,
+      "rating": "3.6"
+    },
+    {
+      "age": 24,
+      "salary": "70600",
+      "city": "Pune",
+      "department": "support",
+      "years_exp": 10,
+      "rating": "3.9"
+    },
+    {
+      "age": 27,
+      "salary": "72200",
+      "city": "chennai",
+      "department": "OPERATIONS",
+      "years_exp": null,
+      "rating": "4.2"
+    },
+    {
+      "age": 30,
+      "salary": "73800",
+      "city": "HYDERABAD",
+      "department": "Operations",
+      "years_exp": 14,
+      "rating": "4.5"
+    },
+    {
+      "age": 33,
+      "salary": "not_available",
+      "city": "Mumbai",
+      "department": "engineering",
+      "years_exp": 16,
+      "rating": "3.6"
+    },
+    {
+      "age": 36,
+      "salary": "76000",
+      "city": "delhi",
+      "department": "ENGINEERING",
+      "years_exp": 18,
+      "rating": "3.9"
+    },
+    {
+      "age": 39,
+      "salary": "77600",
+      "city": "BANGALORE",
+      "department": "Sales",
+      "years_exp": 3,
+      "rating": "4.2"
+    },
+    {
+      "age": null,
+      "salary": "79200",
+      "city": "Pune",
+      "department": "sales",
+      "years_exp": 5,
+      "rating": "4.5"
+    },
+    {
+      "age": 24,
+      "salary": "79800",
+      "city": "chennai",
+      "department": "MARKETING",
+      "years_exp": 7,
+      "rating": "3.6"
+    },
+    {
+      "age": 27,
+      "salary": "81400",
+      "city": "HYDERABAD",
+      "department": "Marketing",
+      "years_exp": 9,
+      "rating": null
+    },
+    {
+      "age": 31,
+      "salary": "83000",
+      "city": "Mumbai",
+      "department": "finance",
+      "years_exp": null,
+      "rating": "4.2"
+    },
+    {
+      "age": 34,
+      "salary": "84600",
+      "city": "delhi",
+      "department": "FINANCE",
+      "years_exp": 13,
+      "rating": "4.5"
+    },
+    {
+      "age": 37,
+      "salary": "85200",
+      "city": "BANGALORE",
+      "department": "Support",
+      "years_exp": 15,
+      "rating": "3.6"
+    },
+    {
+      "age": 40,
+      "salary": "not_available",
+      "city": "Pune",
+      "department": "support",
+      "years_exp": 17,
+      "rating": "3.9"
+    },
+    {
+      "age": 43,
+      "salary": "88400",
+      "city": "chennai",
+      "department": "OPERATIONS",
+      "years_exp": 2,
+      "rating": "4.2"
+    },
+    {
+      "age": null,
+      "salary": "90000",
+      "city": "HYDERABAD",
+      "department": "Operations",
+      "years_exp": 4,
+      "rating": "4.5"
+    },
+    {
+      "age": 28,
+      "salary": "90600",
+      "city": "Mumbai",
+      "department": "engineering",
+      "years_exp": 6,
+      "rating": "3.6"
+    },
+    {
+      "age": 31,
+      "salary": "92200",
+      "city": "delhi",
+      "department": "ENGINEERING",
+      "years_exp": 8,
+      "rating": "3.9"
+    },
+    {
+      "age": 34,
+      "salary": "93800",
+      "city": "BANGALORE",
+      "department": "Sales",
+      "years_exp": null,
+      "rating": "4.2"
+    },
+    {
+      "age": 37,
+      "salary": "95400",
+      "city": "Pune",
+      "department": "sales",
+      "years_exp": 12,
+      "rating": "4.5"
+    },
+    {
+      "age": 40,
+      "salary": "96000",
+      "city": "chennai",
+      "department": "MARKETING",
+      "years_exp": 14,
+      "rating": null
+    },
+    {
+      "age": 43,
+      "salary": "97600",
+      "city": "HYDERABAD",
+      "department": "Marketing",
+      "years_exp": 16,
+      "rating": "3.9"
+    },
+    {
+      "age": 25,
+      "salary": "99200",
+      "city": "Mumbai",
+      "department": "finance",
+      "years_exp": 18,
+      "rating": "4.2"
+    },
+    {
+      "age": null,
+      "salary": "100800",
+      "city": "delhi",
+      "department": "FINANCE",
+      "years_exp": 3,
+      "rating": "4.5"
+    },
+    {
+      "age": 31,
+      "salary": "101400",
+      "city": "BANGALORE",
+      "department": "Support",
+      "years_exp": 5,
+      "rating": "3.6"
+    },
+    {
+      "age": 34,
+      "salary": "103000",
+      "city": "Pune",
+      "department": "support",
+      "years_exp": 7,
+      "rating": "3.9"
+    },
+    {
+      "age": 37,
+      "salary": "104600",
+      "city": "chennai",
+      "department": "OPERATIONS",
+      "years_exp": null,
+      "rating": "4.2"
+    },
+    {
+      "age": 40,
+      "salary": "106200",
+      "city": "HYDERABAD",
+      "department": "Operations",
+      "years_exp": 11,
+      "rating": "4.5"
+    },
+    {
+      "age": 43,
+      "salary": "not_available",
+      "city": "Mumbai",
+      "department": "engineering",
+      "years_exp": 13,
+      "rating": "3.6"
+    },
+    {
+      "age": 25,
+      "salary": "108400",
+      "city": "delhi",
+      "department": "ENGINEERING",
+      "years_exp": 15,
+      "rating": "3.9"
+    },
+    {
+      "age": 28,
+      "salary": "110000",
+      "city": "BANGALORE",
+      "department": "Sales",
+      "years_exp": 17,
+      "rating": "4.2"
+    },
+    {
+      "age": null,
+      "salary": "111600",
+      "city": "Pune",
+      "department": "sales",
+      "years_exp": 2,
+      "rating": "4.5"
+    },
+    {
+      "age": 34,
+      "salary": "112200",
+      "city": "chennai",
+      "department": "MARKETING",
+      "years_exp": 4,
+      "rating": null
+    },
+    {
+      "age": 37,
+      "salary": "113800",
+      "city": "HYDERABAD",
+      "department": "Marketing",
+      "years_exp": 6,
+      "rating": "3.9"
+    },
+    {
+      "age": 40,
+      "salary": "115400",
+      "city": "Mumbai",
+      "department": "finance",
+      "years_exp": null,
+      "rating": "4.2"
+    },
+    {
+      "age": 43,
+      "salary": "117000",
+      "city": "delhi",
+      "department": "FINANCE",
+      "years_exp": 10,
+      "rating": "4.5"
+    },
+    {
+      "age": 25,
+      "salary": "117600",
+      "city": "BANGALORE",
+      "department": "Support",
+      "years_exp": 12,
+      "rating": "3.6"
+    },
+    {
+      "age": 28,
+      "salary": "not_available",
+      "city": "Pune",
+      "department": "support",
+      "years_exp": 14,
+      "rating": "3.9"
+    },
+    {
+      "age": 31,
+      "salary": "120800",
+      "city": "chennai",
+      "department": "OPERATIONS",
+      "years_exp": 16,
+      "rating": "4.2"
+    },
+    {
+      "age": null,
+      "salary": "122400",
+      "city": "HYDERABAD",
+      "department": "Operations",
+      "years_exp": 18,
+      "rating": "4.5"
+    },
+    {
+      "age": 38,
+      "salary": "123000",
+      "city": "Mumbai",
+      "department": "engineering",
+      "years_exp": 3,
+      "rating": "3.6"
+    },
+    {
+      "age": 41,
+      "salary": "124600",
+      "city": "delhi",
+      "department": "ENGINEERING",
+      "years_exp": 5,
+      "rating": "3.9"
+    },
+    {
+      "age": 44,
+      "salary": "126200",
+      "city": "BANGALORE",
+      "department": "Sales",
+      "years_exp": null,
+      "rating": "4.2"
+    },
+    {
+      "age": 26,
+      "salary": "127800",
+      "city": "Pune",
+      "department": "sales",
+      "years_exp": 9,
+      "rating": "4.5"
+    },
+    {
+      "age": 29,
+      "salary": "128400",
+      "city": "chennai",
+      "department": "MARKETING",
+      "years_exp": 11,
+      "rating": null
+    },
+    {
+      "age": 32,
+      "salary": "130000",
+      "city": "HYDERABAD",
+      "department": "Marketing",
+      "years_exp": 13,
+      "rating": "3.9"
+    },
+    {
+      "age": 35,
+      "salary": "131600",
+      "city": "Mumbai",
+      "department": "finance",
+      "years_exp": 15,
+      "rating": "4.2"
+    },
+    {
+      "age": null,
+      "salary": "133200",
+      "city": "delhi",
+      "department": "FINANCE",
+      "years_exp": 17,
+      "rating": "4.5"
+    },
+    {
+      "age": 41,
+      "salary": "133800",
+      "city": "BANGALORE",
+      "department": "Support",
+      "years_exp": 2,
+      "rating": "3.6"
+    },
+    {
+      "age": 44,
+      "salary": "not_available",
+      "city": "Pune",
+      "department": "support",
+      "years_exp": 4,
+      "rating": "3.9"
+    },
+    {
+      "age": 26,
+      "salary": "137000",
+      "city": "chennai",
+      "department": "OPERATIONS",
+      "years_exp": null,
+      "rating": "4.2"
+    },
+    {
+      "age": 29,
+      "salary": "138600",
+      "city": "HYDERABAD",
+      "department": "Operations",
+      "years_exp": 8,
+      "rating": "4.5"
+    },
+    {
+      "age": 32,
+      "salary": "139200",
+      "city": "Mumbai",
+      "department": "engineering",
+      "years_exp": 10,
+      "rating": "3.6"
+    },
+    {
+      "age": 35,
+      "salary": "140800",
+      "city": "delhi",
+      "department": "ENGINEERING",
+      "years_exp": 12,
+      "rating": "3.9"
+    },
+    {
+      "age": 38,
+      "salary": "142400",
+      "city": "BANGALORE",
+      "department": "Sales",
+      "years_exp": 14,
+      "rating": "4.2"
+    },
+    {
+      "age": null,
+      "salary": "144000",
+      "city": "Pune",
+      "department": "sales",
+      "years_exp": 16,
+      "rating": "4.5"
+    },
+    {
+      "age": 44,
+      "salary": "144600",
+      "city": "chennai",
+      "department": "MARKETING",
+      "years_exp": 18,
+      "rating": "3.6"
+    },
+    {
+      "age": 26,
+      "salary": "146200",
+      "city": "HYDERABAD",
+      "department": "Marketing",
+      "years_exp": 3,
+      "rating": "3.9"
+    },
+    {
+      "age": 29,
+      "salary": "147800",
+      "city": "Mumbai",
+      "department": "finance",
+      "years_exp": 5,
+      "rating": null
+    },
+    {
+      "age": 32,
+      "salary": "149400",
+      "city": "delhi",
+      "department": "FINANCE",
+      "years_exp": 7,
+      "rating": "4.5"
+    },
+    {
+      "age": 35,
+      "salary": "150000",
+      "city": "BANGALORE",
+      "department": "Support",
+      "years_exp": 9,
+      "rating": "3.6"
+    },
+    {
+      "age": 38,
+      "salary": "not_available",
+      "city": "Pune",
+      "department": "support",
+      "years_exp": 11,
+      "rating": "3.9"
+    },
+    {
+      "age": 41,
+      "salary": "153200",
+      "city": "chennai",
+      "department": "OPERATIONS",
+      "years_exp": 13,
+      "rating": "4.2"
+    },
+    {
+      "age": null,
+      "salary": "154800",
+      "city": "HYDERABAD",
+      "department": "Operations",
+      "years_exp": 15,
+      "rating": "4.5"
+    },
+    {
+      "age": 26,
+      "salary": "155400",
+      "city": "Mumbai",
+      "department": "engineering",
+      "years_exp": 17,
+      "rating": "3.6"
+    },
+    {
+      "age": 29,
+      "salary": "157000",
+      "city": "delhi",
+      "department": "ENGINEERING",
+      "years_exp": 2,
+      "rating": "3.9"
+    },
+    {
+      "age": 32,
+      "salary": "158600",
+      "city": "BANGALORE",
+      "department": "Sales",
+      "years_exp": null,
+      "rating": "4.2"
+    },
+    {
+      "age": 35,
+      "salary": "160200",
+      "city": "Pune",
+      "department": "sales",
+      "years_exp": 6,
+      "rating": "4.5"
+    },
+    {
+      "age": 38,
+      "salary": "160800",
+      "city": "chennai",
+      "department": "MARKETING",
+      "years_exp": 8,
+      "rating": "3.6"
+    },
+    {
+      "age": null,
+      "salary": "162400",
+      "city": "HYDERABAD",
+      "department": "Marketing",
+      "years_exp": 10,
+      "rating": "3.9"
+    },
+    {
+      "age": 45,
+      "salary": "164000",
+      "city": "Mumbai",
+      "department": "finance",
+      "years_exp": 12,
+      "rating": null
+    },
+    {
+      "age": 27,
+      "salary": "165600",
+      "city": "delhi",
+      "department": "FINANCE",
+      "years_exp": 14,
+      "rating": "4.5"
+    },
+    {
+      "age": 36,
+      "salary": "47400",
+      "city": "chennai",
+      "department": "MARKETING",
+      "years_exp": 10,
+      "rating": "3.6"
+    },
+    {
+      "age": 42,
+      "salary": "59800",
+      "city": "delhi",
+      "department": "ENGINEERING",
+      "years_exp": 11,
+      "rating": "3.9"
+    },
+    {
+      "age": 24,
+      "salary": "70600",
+      "city": "Pune",
+      "department": "support",
+      "years_exp": 10,
+      "rating": "3.9"
+    },
+    {
+      "age": 34,
+      "salary": "84600",
+      "city": "delhi",
+      "department": "FINANCE",
+      "years_exp": 13,
+      "rating": "4.5"
+    },
+    {
+      "age": 31,
+      "salary": "101400",
+      "city": "BANGALORE",
+      "department": "Support",
+      "years_exp": 5,
+      "rating": "3.6"
+    },
+    {
+      "age": 43,
+      "salary": "117000",
+      "city": "delhi",
+      "department": "FINANCE",
+      "years_exp": 10,
+      "rating": "4.5"
+    },
+    {
+      "age": 41,
+      "salary": "133800",
+      "city": "BANGALORE",
+      "department": "Support",
+      "years_exp": 2,
+      "rating": "3.6"
+    },
+    {
+      "age": 32,
+      "salary": "149400",
+      "city": "delhi",
+      "department": "FINANCE",
+      "years_exp": 7,
+      "rating": "4.5"
+    }
+  ]
+}

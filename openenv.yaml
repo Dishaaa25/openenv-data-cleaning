@@ -1,0 +1,24 @@
+name: data_cleaning_env
+description: "RL environment for interactive tabular data cleaning and preparation. Agent must identify and fix data quality issues including missing values, duplicates, wrong dtypes, inconsistent categories, and feature creation."
+version: "1.0.0"
+
+observation_space:
+  type: dict
+  description: "Contains data_preview, columns, pending_issues, resolved_issues, action_history, quality_score, steps_remaining"
+
+action_space:
+  type: dict
+  description: "Action with action_type, column, and params fields"
+
+reward_range: [-0.5, 1.0]
+
+tasks:
+  - name: basic_cleaning
+    description: "Easy: fill missing values in a small dataset (20 rows, 2 issues)"
+    difficulty: easy
+  - name: moderate_cleaning
+    description: "Medium: handle missing values, duplicates, and wrong dtypes (50 rows, 5 issues in practice)"
+    difficulty: medium
+  - name: full_pipeline
+    description: "Hard: full cleaning pipeline with category normalization and feature creation (100 rows, 10 issues in practice)"
+    difficulty: hard

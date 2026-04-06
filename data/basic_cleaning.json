@@ -1,0 +1,112 @@
+{
+  "task_name": "basic_cleaning",
+  "max_steps": 6,
+  "expected_dtypes": {
+    "age": "int",
+    "salary": "int",
+    "city": "str"
+  },
+  "required_features": [],
+  "dataset": [
+    {
+      "age": 25,
+      "salary": 50000,
+      "city": "Mumbai"
+    },
+    {
+      "age": null,
+      "salary": 60000,
+      "city": "Delhi"
+    },
+    {
+      "age": 30,
+      "salary": null,
+      "city": "Mumbai"
+    },
+    {
+      "age": 22,
+      "salary": 45000,
+      "city": "Bangalore"
+    },
+    {
+      "age": null,
+      "salary": 55000,
+      "city": "Delhi"
+    },
+    {
+      "age": 28,
+      "salary": 70000,
+      "city": "Mumbai"
+    },
+    {
+      "age": 35,
+      "salary": null,
+      "city": "Bangalore"
+    },
+    {
+      "age": null,
+      "salary": 48000,
+      "city": "Delhi"
+    },
+    {
+      "age": 26,
+      "salary": 52000,
+      "city": "Mumbai"
+    },
+    {
+      "age": 31,
+      "salary": null,
+      "city": "Bangalore"
+    },
+    {
+      "age": 29,
+      "salary": 62000,
+      "city": "Delhi"
+    },
+    {
+      "age": null,
+      "salary": 43000,
+      "city": "Mumbai"
+    },
+    {
+      "age": 24,
+      "salary": 51000,
+      "city": "Bangalore"
+    },
+    {
+      "age": 33,
+      "salary": null,
+      "city": "Delhi"
+    },
+    {
+      "age": 27,
+      "salary": 58000,
+      "city": "Mumbai"
+    },
+    {
+      "age": null,
+      "salary": 47000,
+      "city": "Bangalore"
+    },
+    {
+      "age": 32,
+      "salary": 65000,
+      "city": "Delhi"
+    },
+    {
+      "age": 23,
+      "salary": null,
+      "city": "Mumbai"
+    },
+    {
+      "age": 36,
+      "salary": 72000,
+      "city": "Bangalore"
+    },
+    {
+      "age": 28,
+      "salary": 53000,
+      "city": "Delhi"
+    }
+  ]
+}
