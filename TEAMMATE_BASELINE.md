@@ -23,12 +23,12 @@ Important:
 
 - `inference.py` uses the OpenAI Python client.
 - In this repo, `HF_TOKEN` is the actual API key variable used by the client.
-- If you are using OpenAI directly, set:
+- A standard Hugging Face router configuration is:
 
 ```bash
-export API_BASE_URL="https://api.openai.com/v1"
-export MODEL_NAME="gpt-4.1-mini"
-export HF_TOKEN="YOUR_OPENAI_API_KEY"
+export API_BASE_URL="https://router.huggingface.co/v1"
+export MODEL_NAME="openai/gpt-oss-120b"
+export HF_TOKEN="YOUR_HF_TOKEN"
 ```
 
 ## Local setup
