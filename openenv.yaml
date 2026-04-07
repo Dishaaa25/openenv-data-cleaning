@@ -1,4 +1,9 @@
+spec_version: 1
 name: data_cleaning_env
+type: space
+runtime: fastapi
+app: server.app:app
+port: 7860
 description: "RL environment for interactive tabular data cleaning and preparation. Agent must identify and fix data quality issues including missing values, duplicates, wrong dtypes, inconsistent categories, and feature creation."
 version: "1.0.0"
 
@@ -10,7 +15,7 @@ action_space:
   type: dict
   description: "Action with action_type, column, and params fields"
 
-reward_range: [-0.5, 1.0]
+reward_range: [-0.05, 1.0]
 
 tasks:
   - name: basic_cleaning

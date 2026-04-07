@@ -1,0 +1,9 @@
+OpenEnv/
+.venv/
+.venv311/
+.idea/
+.oca/
+__pycache__/
+*.pyc
+*.egg-info/
+outputs/logs/

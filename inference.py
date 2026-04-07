@@ -11,11 +11,12 @@ import os
 from openai import OpenAI
 
 from env.environment import DataCleaningEnv
+from env.graders import DataCleaningGrader
 from env.models import Action
 
-API_KEY = os.getenv("HF_TOKEN") or os.getenv("API_KEY")
-API_BASE_URL = os.getenv("API_BASE_URL", "https://router.huggingface.co/v1")
-MODEL_NAME = os.getenv("MODEL_NAME", "Qwen/Qwen2.5-72B-Instruct")
+HF_TOKEN = os.getenv("HF_TOKEN")
+API_BASE_URL = os.getenv("API_BASE_URL")
+MODEL_NAME = os.getenv("MODEL_NAME")
 BENCHMARK = "data_cleaning_env"
 
 TASKS = ["basic_cleaning", "moderate_cleaning", "full_pipeline"]
@@ -64,33 +65,53 @@ def parse_action(response_text: str) -> Action:
     return Action(**parsed)
 
 
+def require_env(name: str, value: str | None) -> str:
+    if value:
+        return value
+    raise RuntimeError(f"Missing required environment variable: {name}")
+
+
+def safe_log_value(value: str | None) -> str:
+    if not value:
+        return "null"
+    return str(value).replace("\n", "_").replace("\r", "_").replace("\t", "_").replace(" ", "_")
+
+
 def log_start(task, env, model):
     print(f"[START] task={task} env={env} model={model}", flush=True)
 
 
 def log_step(step, action_str, reward, done, error):
-    error_val = error if error else "null"
+    error_val = safe_log_value(error)
     done_val = str(done).lower()
-    print(f"[STEP] step={step} action={action_str} reward={reward:.2f} done={done_val} error={error_val}", flush=True)
+    print(
+        f"[STEP] step={step} action={safe_log_value(action_str)} reward={reward:.2f} "
+        f"done={done_val} error={error_val}",
+        flush=True,
+    )
 
 
-def log_end(success, steps, rewards):
+def log_end(success, steps, score, rewards):
     rewards_str = ",".join(f"{reward:.2f}" for reward in rewards)
     success_val = str(success).lower()
-    print(f"[END] success={success_val} steps={steps} rewards={rewards_str}", flush=True)
+    print(f"[END] success={success_val} steps={steps} score={score:.2f} rewards={rewards_str}", flush=True)
 
 
 def run_task(task_name: str):
-    client = OpenAI(base_url=API_BASE_URL, api_key=API_KEY)
+    client = OpenAI(
+        base_url=require_env("API_BASE_URL", API_BASE_URL),
+        api_key=require_env("HF_TOKEN", HF_TOKEN),
+    )
     env = DataCleaningEnv(task_name=task_name)
     obs = env.reset()
-    log_start(task_name, BENCHMARK, MODEL_NAME)
+    log_start(task_name, BENCHMARK, require_env("MODEL_NAME", MODEL_NAME))
 
     messages = [{"role": "system", "content": SYSTEM_PROMPT}]
     rewards_list = []
     step_count = 0
     done = False
     max_possible_steps = obs.steps_remaining
+    task_score = 0.0
 
     while not done and step_count < max_possible_steps:
         obs_dict = obs.model_dump() if hasattr(obs, "model_dump") else obs.dict()
@@ -103,7 +124,7 @@ def run_task(task_name: str):
 
         try:
             response = client.chat.completions.create(
-                model=MODEL_NAME,
+                model=require_env("MODEL_NAME", MODEL_NAME),
                 messages=messages,
                 temperature=0.3,
                 max_tokens=200,
@@ -134,12 +155,26 @@ def run_task(task_name: str):
                 break
 
     success = hasattr(obs, "pending_issues") and len(obs.pending_issues) == 0
-    log_end(success, step_count, rewards_list)
+    final_state = obs.model_dump() if hasattr(obs, "model_dump") else obs.dict()
+    task_score = DataCleaningGrader().grade(
+        final_state,
+        {
+            "total_issues": final_state["total_issues_at_start"],
+            "max_steps": max_possible_steps,
+        },
+    )
+    log_end(success, step_count, task_score, rewards_list)
+    return task_score
 
 
 def main():
+    require_env("HF_TOKEN", HF_TOKEN)
+    require_env("API_BASE_URL", API_BASE_URL)
+    require_env("MODEL_NAME", MODEL_NAME)
+    scores = {}
     for task in TASKS:
-        run_task(task)
+        scores[task] = run_task(task)
+    return scores
 
 
 if __name__ == "__main__":

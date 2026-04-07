@@ -1,0 +1,9 @@
+.git
+.venv
+.venv311
+.idea
+.oca
+__pycache__/
+*.pyc
+OpenEnv/
+outputs/

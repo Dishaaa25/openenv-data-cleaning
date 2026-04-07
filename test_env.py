@@ -1,6 +1,9 @@
 import json
 from pathlib import Path
 
+from fastapi.testclient import TestClient
+
+from app import app
 from env.environment import DataCleaningEnv
 from env.graders import DataCleaningGrader
 from env.models import Action
@@ -27,6 +30,46 @@ def assert_dependency_gate() -> None:
     )
     assert reward == -0.05
     assert info["error"] == "invalid_action"
+
+
+def assert_api_contract() -> None:
+    client = TestClient(app)
+
+    root_response = client.get("/")
+    assert root_response.status_code == 200
+    assert root_response.json()["name"] == "data_cleaning_env"
+
+    assert client.get("/health").json()["status"] == "healthy"
+
+    metadata_response = client.get("/metadata")
+    assert metadata_response.status_code == 200
+    metadata_payload = metadata_response.json()
+    assert metadata_payload["name"] == "data_cleaning_env"
+    assert "description" in metadata_payload
+
+    schema_response = client.get("/schema")
+    assert schema_response.status_code == 200
+    schema_payload = schema_response.json()
+    assert {"action", "observation", "state"} <= set(schema_payload.keys())
+
+    reset_response = client.post("/reset", json={"task_name": "basic_cleaning"})
+    assert reset_response.status_code == 200
+    assert "pending_issues" in reset_response.json()
+
+    step_response = client.post(
+        "/step",
+        json={"action_type": "fill_missing", "column": "age", "params": {"strategy": "mean"}},
+    )
+    assert step_response.status_code == 200
+    assert {"observation", "reward", "done", "info"} <= set(step_response.json().keys())
+
+    state_response = client.get("/state")
+    assert state_response.status_code == 200
+    assert "quality_score" in state_response.json()
+
+    mcp_response = client.post("/mcp", json={"jsonrpc": "2.0", "id": "smoke"})
+    assert mcp_response.status_code == 200
+    assert mcp_response.json()["jsonrpc"] == "2.0"
 
 
 def run_sequence(task_name: str, actions: list[Action], expected_issues: int) -> tuple[dict, float]:
@@ -57,6 +100,7 @@ def run_sequence(task_name: str, actions: list[Action], expected_issues: int) ->
 def main() -> None:
     assert_invalid_action_consumes_step()
     assert_dependency_gate()
+    assert_api_contract()
 
     sequences = {
         "basic_cleaning": (
