@@ -11,4 +11,9 @@ class DataCleaningGrader:
 
         score = 0.8 * correctness + 0.2 * efficiency - penalty
         # Phase 2 requires task scores to stay strictly inside (0, 1).
-        return round(max(0.01, min(0.99, score)), 2)
+        rounded_score= round(max(0.01, min(0.99, score)), 2)
+        if rounded_score <= 0.0:
+            return 0.01
+        if rounded_score >= 1.0:
+            return 0.99
+        return rounded_score

@@ -12,4 +12,9 @@ def compute_reward(
     step_cost = -0.01
 
     reward = progress + ordering_bonus + step_cost
-    return round(max(0.01, min(0.99, reward)), 4)
+    rounded_score= round(max(0.01, min(0.99, score)), 2)
+    if rounded_score <= 0.0:
+        return 0.01
+    if rounded_score >= 1.0:
+        return 0.99
+    return rounded_score
