@@ -5,6 +5,7 @@ from typing import Any, Literal
 
 import uvicorn
 from fastapi import Body, FastAPI
+from fastapi.responses import RedirectResponse, Response
 from pydantic import BaseModel
 
 from models import Action, Observation
@@ -42,6 +43,21 @@ def root() -> dict[str, Any]:
     payload = _metadata()
     payload["status"] = "ok"
     return payload
+
+
+@app.get("/web", include_in_schema=False)
+def web_root() -> RedirectResponse:
+    return RedirectResponse(url="/", status_code=307)
+
+
+@app.get("/web/", include_in_schema=False)
+def web_root_slash() -> RedirectResponse:
+    return RedirectResponse(url="/", status_code=307)
+
+
+@app.get("/favicon.ico", include_in_schema=False)
+def favicon() -> Response:
+    return Response(status_code=204)
 
 
 @app.get("/health")
