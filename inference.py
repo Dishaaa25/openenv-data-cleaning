@@ -2,7 +2,7 @@
 STDOUT FORMAT (must match exactly):
 [START] task=<task_name> env=data_cleaning_env model=<model_name>
 [STEP]  step=<n> action=<action_str> reward=<0.00> done=<true|false> error=<msg|null>
-[END]   success=<true|false> steps=<n> rewards=<r1,r2,...,rn>
+[END]   success=<true|false> steps=<n> score=<score> rewards=<r1,r2,...,rn>
 """
 
 import json
@@ -91,10 +91,10 @@ def log_step(step, action_str, reward, done, error):
     )
 
 
-def log_end(success, steps, rewards):
+def log_end(success, steps, score, rewards):
     rewards_str = ",".join(f"{reward:.2f}" for reward in rewards)
     success_val = str(success).lower()
-    print(f"[END] success={success_val} steps={steps} rewards={rewards_str}", flush=True)
+    print(f"[END] success={success_val} steps={steps} score={score:.2f} rewards={rewards_str}", flush=True)
 
 
 def run_task(task_name: str):
@@ -163,7 +163,7 @@ def run_task(task_name: str):
             "max_steps": max_possible_steps,
         },
     )
-    log_end(success, step_count, rewards_list)
+    log_end(success, step_count, task_score, rewards_list)
     return task_score
 
 
