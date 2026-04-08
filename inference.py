@@ -15,8 +15,8 @@ from env.graders import DataCleaningGrader
 from env.models import Action
 
 HF_TOKEN = os.getenv("HF_TOKEN")
-API_BASE_URL = os.getenv("API_BASE_URL")
-MODEL_NAME = os.getenv("MODEL_NAME")
+API_BASE_URL = os.getenv("API_BASE_URL", "https://router.huggingface.co/v1")
+MODEL_NAME = os.getenv("MODEL_NAME", "openai/gpt-oss-120b")
 BENCHMARK = "data_cleaning_env"
 
 TASKS = ["basic_cleaning", "moderate_cleaning", "full_pipeline"]
@@ -91,10 +91,10 @@ def log_step(step, action_str, reward, done, error):
     )
 
 
-def log_end(success, steps, score, rewards):
+def log_end(success, steps, rewards):
     rewards_str = ",".join(f"{reward:.2f}" for reward in rewards)
     success_val = str(success).lower()
-    print(f"[END] success={success_val} steps={steps} score={score:.2f} rewards={rewards_str}", flush=True)
+    print(f"[END] success={success_val} steps={steps} rewards={rewards_str}", flush=True)
 
 
 def run_task(task_name: str):
@@ -126,7 +126,7 @@ def run_task(task_name: str):
             response = client.chat.completions.create(
                 model=require_env("MODEL_NAME", MODEL_NAME),
                 messages=messages,
-                temperature=0.3,
+                temperature=0.0,
                 max_tokens=200,
             )
             response_text = response.choices[0].message.content or ""
@@ -163,7 +163,7 @@ def run_task(task_name: str):
             "max_steps": max_possible_steps,
         },
     )
-    log_end(success, step_count, task_score, rewards_list)
+    log_end(success, step_count, rewards_list)
     return task_score
 
 
