@@ -51,7 +51,7 @@ def _compute_consistency(dataset: list[dict], column_infos: list) -> float:
 
 def compute_quality_score(dataset: list[dict], column_infos: list, original_issues_count: int) -> float:
     if original_issues_count == 0:
-        return 1.0
+        return 0.99
 
     total_cells = len(dataset) * len(dataset[0]) if dataset else 1
     missing_cells = sum(
@@ -65,4 +65,5 @@ def compute_quality_score(dataset: list[dict], column_infos: list, original_issu
 
     consistency = _compute_consistency(dataset, column_infos)
 
-    return round(0.4 * completeness + 0.3 * uniqueness + 0.3 * consistency, 4)
+    score = 0.4 * completeness + 0.3 * uniqueness + 0.3 * consistency
+    return round(max(0.01, min(0.99, score)), 4)
