@@ -54,7 +54,7 @@ openenv-data-cleaning/
 | `normalize_category` | Categorical column | `{}` | Only valid when case-only category inconsistencies remain. |
 | `create_feature` | Registered feature name | `{"feature_name": "<name>"}` | Feature must be required by the task and its source column must already be clean enough to use. |
 
-Invalid actions leave the dataset unchanged, emit `{"error": "invalid_action"}` in `info`, consume a step, and return reward `-0.05`.
+Invalid actions leave the dataset unchanged, emit `{"error": "invalid_action"}` in `info`, consume a step, and return a low reward `0.01`.
 
 ## Observation and State Space
 
@@ -89,6 +89,7 @@ Step reward:
 ```text
 reward = (new_quality - old_quality) + ordering_bonus - 0.01
 ordering_bonus = 0.05 if dependencies were already satisfied else 0.0
+reward is then clamped to `(0.01, 0.99)`
 ```
 
 Dataset quality score combines:

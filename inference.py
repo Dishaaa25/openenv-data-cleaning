@@ -143,8 +143,8 @@ def run_task(task_name: str):
 
         except Exception as exc:
             step_count += 1
-            rewards_list.append(-0.05)
-            log_step(step_count, "parse_error", -0.05, False, str(exc))
+            rewards_list.append(0.01)
+            log_step(step_count, "parse_error", 0.01, False, str(exc))
             messages.append(
                 {
                     "role": "user",

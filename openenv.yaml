@@ -15,7 +15,7 @@ action_space:
   type: dict
   description: "Action with action_type, column, and params fields"
 
-reward_range: [-0.05, 1.0]
+reward_range: [0.01, 0.99]
 
 tasks:
   - name: basic_cleaning

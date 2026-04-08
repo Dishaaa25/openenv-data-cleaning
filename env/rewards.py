@@ -5,10 +5,11 @@ def compute_reward(
     resolved_dependency_correctly: bool,
 ) -> float:
     if not action_valid:
-        return -0.05
+        return 0.01
 
     progress = new_quality - old_quality
     ordering_bonus = 0.05 if resolved_dependency_correctly else 0.0
     step_cost = -0.01
 
-    return round(progress + ordering_bonus + step_cost, 4)
+    reward = progress + ordering_bonus + step_cost
+    return round(max(0.01, min(0.99, reward)), 4)

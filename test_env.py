@@ -17,7 +17,7 @@ def assert_invalid_action_consumes_step() -> None:
     _, reward, _, info = env.step(
         Action(action_type="convert_dtype", column="age", params={"target_dtype": "int"})
     )
-    assert reward == -0.05
+    assert reward == 0.01
     assert info["error"] == "invalid_action"
     assert env.steps_remaining == obs.steps_remaining - 1
 
@@ -28,7 +28,7 @@ def assert_dependency_gate() -> None:
     _, reward, _, info = env.step(
         Action(action_type="convert_dtype", column="salary", params={"target_dtype": "int"})
     )
-    assert reward == -0.05
+    assert reward == 0.01
     assert info["error"] == "invalid_action"
 
 
