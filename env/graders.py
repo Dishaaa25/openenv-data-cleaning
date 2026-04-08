@@ -10,4 +10,5 @@ class DataCleaningGrader:
         penalty = wrong_actions * 0.05
 
         score = 0.8 * correctness + 0.2 * efficiency - penalty
-        return round(max(0.0, min(1.0, score)), 2)
+        # Phase 2 requires task scores to stay strictly inside (0, 1).
+        return round(max(0.01, min(0.99, score)), 2)
